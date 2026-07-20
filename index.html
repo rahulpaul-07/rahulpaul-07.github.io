@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0a0f0d" />
+<meta name="keywords" content="Rahul Paul, software engineer, machine learning, cyber security, full-stack, competitive programming, internship, Bengaluru" />
+<title>Rahul Paul — Portfolio</title>
+<meta name="description" content="Rahul Paul — Computer Science (Cyber Security) undergraduate building at the intersection of machine learning, web engineering, and security. Seeking internships." />
+<meta name="author" content="Rahul Paul" />
+<meta property="og:title" content="Rahul Paul — Portfolio" />
+<meta property="og:description" content="CS (Cyber Security) undergraduate building at the intersection of ML, web engineering, and security." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='13'%20fill='%230a0f0d'/%3E%3Crect%20x='2.5'%20y='2.5'%20width='59'%20height='59'%20rx='11'%20fill='none'%20stroke='%2337d67a'%20stroke-width='2'/%3E%3Ctext%20x='32'%20y='44'%20font-family='monospace'%20font-size='30'%20font-weight='700'%20fill='%2337d67a'%20text-anchor='middle'%3ERP%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0a0f0d; --bg-2:#0f1613; --bg-3:#131d18;
+  --border:#20302a; --border-2:#2b4038;
+  --text:#d3ddd6; --muted:#809188; --dim:#5d6f66;
+  --accent:#37d67a; --accent-2:#7cffb2;
+  --accent-glow:rgba(55,214,122,.16);
+  --blue:#5fa8ff; --red:#ff6b6b; --yellow:#ffd166; --orange:#ff9f45;
+  --maxw:1080px;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--text); font-family:var(--mono); font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background:radial-gradient(900px 600px at 78% -8%, rgba(55,214,122,.10), transparent 60%),radial-gradient(700px 500px at 6% 12%, rgba(55,214,122,.05), transparent 55%)}
+body::after{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.35;
+  background-image:linear-gradient(to right, rgba(55,214,122,.045) 1px, transparent 1px),linear-gradient(to bottom, rgba(55,214,122,.045) 1px, transparent 1px);
+  background-size:44px 44px; mask-image:radial-gradient(circle at 50% 20%, #000 0%, transparent 78%); -webkit-mask-image:radial-gradient(circle at 50% 20%, #000 0%, transparent 78%)}
+a{color:var(--accent); text-decoration:none} a:hover{color:var(--accent-2)}
+::selection{background:var(--accent-glow); color:var(--accent-2)}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+
+/* nav */
+nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(10,15,13,.78); border-bottom:1px solid var(--border)}
+.nav-inner{max-width:var(--maxw); margin:0 auto; padding:12px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px; color:var(--text)}
+.brand .mono-badge{display:grid; place-items:center; width:34px; height:34px; border:1.5px solid var(--accent); border-radius:9px; color:var(--accent); font-size:14px; font-weight:800; box-shadow:0 0 0 3px rgba(55,214,122,.06), inset 0 0 12px rgba(55,214,122,.08)}
+.brand small{color:var(--dim); font-weight:500}
+.nav-links{display:flex; gap:4px; flex-wrap:wrap}
+.nav-links a{color:var(--muted); font-size:13px; padding:6px 10px; border-radius:7px; border:1px solid transparent; transition:.18s}
+.nav-links a:hover{color:var(--accent-2); background:var(--bg-2)}
+.nav-links a.active{color:var(--accent); border-color:var(--border-2); background:var(--bg-2)}
+.nav-links a::before{content:"#"; color:var(--dim); margin-right:2px}
+.nav-toggle{display:none}
+
+/* hero */
+header.hero{padding:54px 0 30px}
+.term{border:1px solid var(--border-2); border-radius:12px; overflow:hidden; background:linear-gradient(180deg,#0e1613,#0b110f); box-shadow:0 24px 60px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(55,214,122,.04)}
+.term-bar{display:flex; align-items:center; gap:8px; padding:11px 14px; background:#0c1210; border-bottom:1px solid var(--border)}
+.dot{width:12px; height:12px; border-radius:50%}
+.dot.r{background:var(--red)} .dot.y{background:var(--yellow)} .dot.g{background:var(--accent)}
+.term-title{margin-left:10px; color:var(--dim); font-size:12.5px}
+.term-body{padding:22px 22px 6px; font-size:14.5px}
+.term-body p{margin:0 0 8px}
+.pr{color:var(--accent)} .pth{color:var(--blue)}
+.term-body .out{color:var(--text)}
+.term-body .out.name{font-size:clamp(30px,6vw,52px); font-weight:800; line-height:1.05; margin:6px 0 14px; color:#eafff3; letter-spacing:-.5px}
+.term-body .out.name .accent{color:var(--accent)}
+.muted-out{color:var(--muted)}
+.type{color:var(--accent-2)}
+.cursor{color:var(--accent); animation:blink 1.05s step-end infinite; font-weight:700}
+@keyframes blink{50%{opacity:0}}
+.cta{display:flex; flex-wrap:wrap; gap:10px; padding:20px 22px 24px}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:9px; border:1px solid var(--border-2); background:var(--bg-2); color:var(--text); font-size:13.5px; font-weight:500; transition:.18s; cursor:pointer}
+.btn:hover{border-color:var(--accent); color:var(--accent-2); transform:translateY(-2px); box-shadow:0 8px 22px -14px var(--accent-glow)}
+.btn .ic{width:16px; height:16px; fill:currentColor; flex:none}
+.btn.primary{background:var(--accent-glow); border-color:var(--accent); color:var(--accent-2)}
+.btn.primary:hover{background:rgba(55,214,122,.22)}
+
+/* hero credential strip */
+.hero-cred{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; justify-content:center}
+.cred{display:inline-flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); background:var(--bg-2); border:1px solid var(--border); border-radius:20px; padding:5px 13px}
+.cred b{color:var(--text); font-weight:600}
+.cred::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); flex:none}
+
+/* stats band */
+.stats{border-top:none; padding:26px 0 4px}
+.stats-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:14px}
+.stat{display:flex; flex-direction:column; gap:5px; padding:16px 15px; background:linear-gradient(180deg,var(--bg-2),transparent); border:1px solid var(--border); border-radius:12px}
+.stat:hover{border-color:var(--border-2)}
+.stat .num{font-size:25px; font-weight:800; color:var(--accent-2); line-height:1.05; letter-spacing:-.5px}
+.stat .num small{font-size:13px; color:var(--muted); font-weight:600}
+.stat .cap{font-size:11.5px; color:var(--muted); line-height:1.45}
+@media (max-width:880px){ .stats-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:460px){ .stats-grid{grid-template-columns:1fr} }
+
+/* sections */
+section{padding:46px 0; border-top:1px solid var(--border)}
+.sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:26px; flex-wrap:wrap}
+.sec-head h2{margin:0; font-size:22px; font-weight:800; color:#eafff3; letter-spacing:-.3px}
+.sec-head .path{color:var(--dim); font-size:13px}
+.sec-head .path b{color:var(--accent); font-weight:500}
+.lead{color:var(--muted); max-width:70ch; margin:0 0 4px}
+.lead strong{color:var(--text); font-weight:600}
+
+/* bio + callout */
+.bio{font-size:15.5px; color:var(--text); max-width:76ch; margin:0 0 20px; line-height:1.78}
+.bio b{color:var(--accent-2); font-weight:600}
+.callout{border:1px solid var(--border-2); border-left:3px solid var(--accent); background:linear-gradient(180deg, rgba(55,214,122,.06), transparent); border-radius:10px; padding:15px 18px; margin:0 0 6px; max-width:80ch}
+.callout .k{color:var(--accent); font-size:12px; letter-spacing:.5px; display:block; margin-bottom:6px}
+.callout p{margin:0; color:var(--muted); font-size:13.8px}
+.callout a{color:var(--accent-2)}
+
+/* education */
+.edu{display:grid; gap:14px; margin-top:22px}
+.edu-item{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:16px 18px; background:var(--bg-2); border:1px solid var(--border); border-radius:10px}
+.edu-item:hover{border-color:var(--border-2)}
+.edu-item .l h3{margin:0 0 3px; font-size:15.5px; color:var(--text)}
+.edu-item .l p{margin:0; color:var(--muted); font-size:13.5px}
+.edu-item .r{text-align:right; color:var(--dim); font-size:13px; white-space:nowrap}
+.edu-item .r .g{color:var(--accent); font-weight:600}
+
+/* experience */
+.xp{background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:22px 22px 8px; border-left:3px solid var(--accent)}
+.xp-top{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:baseline; margin-bottom:6px}
+.xp-top h3{margin:0; font-size:17px; color:#eafff3}
+.xp-top h3 span{color:var(--accent)}
+.xp-top .when{color:var(--dim); font-size:13px; white-space:nowrap}
+.xp .role{color:var(--muted); font-size:13.5px; margin:0 0 14px}
+ul.bul{list-style:none; margin:0; padding:0}
+ul.bul li{position:relative; padding:0 0 14px 22px; color:var(--muted); font-size:14px}
+ul.bul li::before{content:"▹"; position:absolute; left:0; top:0; color:var(--accent)}
+ul.bul li b{color:var(--text); font-weight:600}
+
+/* projects */
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px}
+.card{display:flex; flex-direction:column; background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:0; transition:.2s; position:relative; overflow:hidden}
+.card:hover{transform:translateY(-4px); border-color:var(--border-2); box-shadow:0 20px 40px -28px rgba(0,0,0,.9)}
+.preview{position:relative; display:block; height:138px; text-decoration:none; border-bottom:1px solid var(--border)}
+.pv-bar{position:absolute; top:0; left:0; right:0; height:30px; display:flex; align-items:center; gap:6px; padding:0 12px; background:#0c1210; border-bottom:1px solid var(--border); z-index:2}
+.pv-bar .d{width:9px; height:9px; border-radius:50%}
+.pv-bar .d.r{background:var(--red)} .pv-bar .d.y{background:var(--yellow)} .pv-bar .d.g{background:var(--accent)}
+.pv-url{margin-left:8px; color:var(--dim); font-size:11.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.pv-open{margin-left:auto; color:var(--accent); font-size:11px; opacity:0; transition:.2s}
+.preview:hover .pv-open{opacity:1}
+.pv-art{position:absolute; inset:30px 0 0 0; display:grid; place-items:center; overflow:hidden; transition:transform .3s}
+.preview:hover .pv-art{transform:scale(1.05)}
+.pv-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; z-index:1}
+.preview.p1 .pv-art{background:radial-gradient(120% 130% at 22% 0%, rgba(55,214,122,.20), transparent 62%), #0e1613}
+.preview.p2 .pv-art{background:radial-gradient(120% 130% at 80% 6%, rgba(95,168,255,.16), transparent 62%), #0d1512}
+.preview.p3 .pv-art{background:radial-gradient(120% 130% at 50% 0%, rgba(255,107,107,.14), transparent 62%), #12100f}
+.preview.p4 .pv-art{background:radial-gradient(120% 130% at 28% 0%, rgba(124,255,178,.16), transparent 60%), radial-gradient(120% 120% at 85% 15%, rgba(95,168,255,.10), transparent 60%), #0e1613}
+.card.lead-proj{border-color:var(--border-2); box-shadow:0 0 0 1px rgba(55,214,122,.08)}
+.lead-badge{display:inline-block; font-size:10.5px; letter-spacing:.5px; color:var(--accent); border:1px solid var(--border-2); border-radius:20px; padding:2px 9px; margin-left:8px; vertical-align:middle}
+.card-body{padding:20px; display:flex; flex-direction:column; flex:1}
+.card-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:2px}
+.card-top h3{margin:0; font-size:16.5px; color:#eafff3}
+.card-top .when{color:var(--dim); font-size:12px; white-space:nowrap}
+.card-sub{margin:0 0 2px; color:var(--dim); font-size:12.5px}
+.card-body ul.bul{margin-top:12px}
+.card-body ul.bul li{font-size:13.5px; padding-bottom:11px}
+.tags{display:flex; flex-wrap:wrap; gap:6px; margin:12px 0 16px}
+.tag{font-size:11.5px; color:var(--muted); background:var(--bg-3); border:1px solid var(--border); padding:3px 9px; border-radius:6px}
+.card-links{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap}
+.chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; padding:6px 11px; border:1px solid var(--border-2); border-radius:8px; color:var(--text)}
+.chip:hover{border-color:var(--accent); color:var(--accent-2)}
+.chip .ic{width:14px; height:14px; fill:currentColor}
+
+/* more on github */
+.more-h{margin:30px 0 14px; font-size:14px; color:var(--muted); font-weight:600; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+.more-h::before{content:"~/ "; color:var(--dim)}
+.more-h .allrepos{font-size:12px; font-weight:500; margin-left:auto}
+.repo-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px}
+.repo{display:flex; flex-direction:column; gap:8px; background:var(--bg-2); border:1px solid var(--border); border-radius:10px; padding:15px 16px; transition:.18s}
+.repo:hover{border-color:var(--accent); transform:translateY(-3px); box-shadow:0 14px 30px -22px rgba(0,0,0,.9)}
+.repo .rtop{display:flex; align-items:center; gap:8px}
+.repo .rico{width:15px; height:15px; fill:var(--muted); flex:none}
+.repo:hover .rico{fill:var(--accent)}
+.repo h4{margin:0; font-size:13.5px; color:var(--accent-2); font-weight:600; word-break:break-word}
+.repo p{margin:0; color:var(--muted); font-size:12.5px; line-height:1.55; flex:1}
+.repo .lang{display:flex; align-items:center; gap:6px; color:var(--dim); font-size:11.5px}
+.repo .ld{width:9px; height:9px; border-radius:50%; flex:none}
+
+/* publication + notes */
+.pub{display:flex; gap:16px; background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:20px}
+.pub .badge{flex:none; width:44px; height:44px; border-radius:10px; display:grid; place-items:center; background:var(--bg-3); border:1px solid var(--border-2); color:var(--accent)}
+.pub h3{margin:0 0 5px; font-size:16px; color:#eafff3}
+.pub .meta{color:var(--dim); font-size:12.5px; margin:0 0 9px}
+.pub p{margin:0; color:var(--muted); font-size:13.5px}
+.notes{margin-top:16px; display:flex; gap:14px; align-items:center; background:var(--bg-2); border:1px dashed var(--border-2); border-radius:12px; padding:16px 18px}
+.notes .soon{font-size:10.5px; color:var(--accent); border:1px solid var(--border-2); border-radius:20px; padding:2px 10px; white-space:nowrap; letter-spacing:.4px}
+.notes p{margin:0; color:var(--muted); font-size:13.3px}
+
+/* skills */
+.skills{display:grid; gap:14px}
+.skillrow{background:var(--bg-2); border:1px solid var(--border); border-radius:10px; padding:15px 18px}
+.skillrow h4{margin:0 0 11px; font-size:13px; color:var(--accent); font-weight:600; letter-spacing:.4px}
+.skillrow h4::before{content:"› "; color:var(--dim)}
+.skillrow .tags{margin:0}
+.skillrow .tag{color:var(--text)}
+
+/* beyond / interests */
+.beyond-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px}
+.interest{background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:18px; transition:.2s}
+.interest:hover{border-color:var(--border-2); transform:translateY(-3px)}
+.interest .ico{width:36px; height:36px; border-radius:9px; display:grid; place-items:center; background:var(--bg-3); border:1px solid var(--border-2); color:var(--accent); margin-bottom:12px}
+.interest .ico svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2}
+.interest h3{margin:0 0 6px; font-size:15px; color:#eafff3}
+.interest p{margin:0; color:var(--muted); font-size:13.3px; line-height:1.6}
+.interest p b{color:var(--text); font-weight:600}
+
+/* certs */
+.two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+.panel{background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:20px}
+.panel h4{margin:0 0 14px; font-size:13px; color:var(--accent); letter-spacing:.4px}
+.panel h4::before{content:"› "; color:var(--dim)}
+.metric{display:flex; align-items:baseline; gap:10px; margin-bottom:6px}
+.metric .big{font-size:26px; font-weight:800; color:var(--accent-2)}
+.metric .lbl{color:var(--muted); font-size:13px}
+.ach-list{list-style:none; margin:8px 0 0; padding:0}
+.ach-list li{padding:9px 0; border-top:1px dashed var(--border); font-size:13.5px; color:var(--muted); display:flex; justify-content:space-between; gap:12px; align-items:center}
+.ach-list li:first-child{border-top:none}
+.ach-list li b{color:var(--text); font-weight:600}
+.ach-list li .src{white-space:nowrap; font-size:12px}
+
+/* contact */
+#contact .lead{margin-bottom:20px}
+.contact-grid{display:flex; flex-wrap:wrap; gap:10px}
+.copywrap{display:inline-flex; align-items:center}
+.copied{color:var(--accent); font-size:12px; margin-left:8px; opacity:0; transition:.2s}
+.copied.show{opacity:1}
+
+footer{border-top:1px solid var(--border); padding:26px 0 40px; color:var(--dim); font-size:12.5px}
+footer .wrap{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center}
+footer .prompt{color:var(--accent)}
+
+.js .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+.js .reveal.in{opacity:1; transform:none}
+
+@media (max-width:760px){
+  .nav-links{display:none; position:absolute; top:58px; left:0; right:0; flex-direction:column; background:var(--bg); border-bottom:1px solid var(--border); padding:10px 24px}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:inline-flex; align-items:center; gap:8px; background:var(--bg-2); border:1px solid var(--border-2); color:var(--text); padding:7px 11px; border-radius:8px; font-family:var(--mono); font-size:13px; cursor:pointer}
+  .nav-inner{position:relative}
+  .two{grid-template-columns:1fr}
+  .term-body{padding:18px 16px 4px}
+  .cta{padding:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+  .js .reveal{opacity:1; transform:none}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><span class="mono-badge">RP</span> Rahul&nbsp;Paul <small>~/portfolio</small></div>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰ menu</button>
+    <div class="nav-links" id="navlinks">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#writing">writing</a>
+      <a href="#skills">skills</a>
+      <a href="#beyond">beyond</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="term reveal">
+      <div class="term-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="term-title">rahul_paul — bash — 92×24</span>
+      </div>
+      <div class="term-body">
+        <p><span class="pr">rahul</span><span class="muted-out">@</span><span class="pth">bengaluru</span>:<span class="pth">~</span>$ whoami</p>
+        <p class="out name">Rahul <span class="accent">Paul</span></p>
+        <p><span class="pr">rahul</span><span class="muted-out">@</span><span class="pth">bengaluru</span>:<span class="pth">~</span>$ cat role.txt</p>
+        <p class="out">B.E. Computer Science (Cyber Security) · MS Ramaiah Institute of Technology</p>
+        <p class="out muted-out">Bengaluru, India · CGPA 9.52 / 10 · Graduating 2027 · Project intern, Samsung PRISM</p>
+        <p><span class="pr">rahul</span><span class="muted-out">@</span><span class="pth">bengaluru</span>:<span class="pth">~</span>$ focus --areas <span class="type" data-words="multimodal ML|full-stack web|security tooling">multimodal ML · full-stack web · security tooling</span><span class="cursor">▋</span></p>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="Rahul_Paul_Resume.pdf" download><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v10.6l3.3-3.3 1.4 1.4L12 17.4l-4.7-4.7 1.4-1.4L12 13.6V3h0zM5 19h14v2H5z"/></svg>Download résumé</a>
+        <a class="btn" href="https://github.com/rahulpaul-07" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/rahul-paul-554225251" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.3v1.6h.1c.5-.9 1.6-1.9 3.3-1.9 3.5 0 4.2 2.3 4.2 5.3v6.4zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9H7v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>LinkedIn</a>
+        <a class="btn" href="https://leetcode.com/u/rahul_paul07/" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M13.5 2.3 8 8l-3.3 3.4a3 3 0 0 0 0 4.2L8 19l5.5 5.7 1.7-1.7-5.3-5.5 5.7-5.9-1.7-1.7-4 4.1-1.5-1.5a1 1 0 0 1 0-1.4L13.7 8l5.3-5.5-1.7-1.7-3.8 1.5z"/><path d="M12 12.9h9.5v2.4H12z"/></svg>LeetCode</a>
+        <a class="btn" href="mailto:rahulpaul.csetech@gmail.com"><svg class="ic" viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.5l8 5 8-5V6H4zm16 3-8 5-8-5v9h16V9z"/></svg>Email</a>
+      </div>
+    </div>
+    <div class="hero-cred reveal">
+      <span class="cred"><b>Samsung R&amp;D</b> — research intern</span>
+      <span class="cred"><b>Springer Nature</b> — published author</span>
+      <span class="cred"><b>IBM-certified</b> — security</span>
+      <span class="cred"><b>B.E. CSE</b> — Cyber Security, 2027</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HIGHLIGHTS -->
+  <section class="stats" aria-label="Highlights by the numbers">
+    <div class="wrap stats-grid">
+      <div class="stat reveal"><span class="num">9.52<small>/10</small></span><span class="cap">CGPA · CSE (Cyber Security)</span></div>
+      <div class="stat reveal"><span class="num">Top 7.3%</span><span class="cap">LeetCode · rating 1821</span></div>
+      <div class="stat reveal"><span class="num">6.7×</span><span class="cap">on-device model compression</span></div>
+      <div class="stat reveal"><span class="num">100%</span><span class="cap">precision &amp; recall · Sentinel benchmark</span></div>
+      <div class="stat reveal"><span class="num">1,500+</span><span class="cap">cubes solved · 100% correct</span></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>About</h2><span class="path"><b>~/</b>about</span></div>
+      <p class="bio reveal">Most of what I know, I've learned by building. I like taking a hard problem end to end and staying with it through the unglamorous parts — the tests, the CI, and the bug that quietly halves your scores. My projects tend to sit where <b>machine learning</b>, <b>web engineering</b>, and <b>security</b> meet: a Rubik's-cube solver held to a near-optimal move count, a DNS threat detector built to read real attack traffic, and an on-device captioning model squeezed into 153&nbsp;MB. I care about shipping things that actually run, not just demos. Right now I'm a project intern at Samsung R&amp;D, and I'm looking for internships where I can keep learning from people who build at scale.</p>
+      <div class="callout reveal">
+        <span class="k">// what I'm looking for</span>
+        <p>Open to <strong>software engineering</strong>, <strong>machine learning</strong>, <strong>quantitative</strong>, and <strong>security</strong> internships in technology and finance. Graduating 2027 · based in Bengaluru, India. Fastest way to reach me: <a href="mailto:rahulpaul.csetech@gmail.com">email</a>.</p>
+      </div>
+      <div class="edu reveal">
+        <div class="edu-item">
+          <div class="l"><h3>MS Ramaiah Institute of Technology</h3><p>B.E. in Computer Science and Engineering (Cyber Security)</p></div>
+          <div class="r">Bengaluru, Karnataka<br>2023 – 2027 · <span class="g">CGPA 9.52 / 10</span></div>
+        </div>
+        <div class="edu-item">
+          <div class="l"><h3>Bhavan's Gangabux Kanoria Vidyamandir</h3><p>Class XII (AISSCE)</p></div>
+          <div class="r">Kolkata, West Bengal<br>2021 – 2022 · <span class="g">96.33%</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Experience</h2><span class="path"><b>~/</b>experience</span></div>
+      <div class="xp reveal">
+        <div class="xp-top"><h3>Project Intern <span>· Samsung PRISM</span></h3><span class="when">Dec 2025 – Present</span></div>
+        <p class="role">Samsung R&amp;D Institute India · Bengaluru</p>
+        <ul class="bul">
+          <li>Developing <b>EmoCapNet</b>, a 254.8M-parameter multimodal vision-language model for 7-class emotion-aware image captioning — fusing ViT-Base + GPT-2 via cross-attention and VAD-FiLM conditioning, trained with multi-task learning (captioning, VAD regression, emotion classification, contrastive alignment) on a 67K-caption emotion-augmented Flickr30k corpus.</li>
+          <li>Distilled the teacher into a <b>TinyCLIP-ViT + DistilGPT-2 student</b> (112.5M params, 2.3× smaller) via soft-logit, VAD/emotion-head, and feature-level embedding distillation; measured <b>METEOR 22.1</b>, <b>CIDEr 0.363</b>, and an emotion-controllability correlation of <b>r = 0.81</b> on a 6.7K-caption held-out set.</li>
+          <li>Engineered on-device deployment via <b>INT8 dynamic quantization</b> (custom Conv1D→Linear rewrite to make GPT-2 quantizable), compressing ~1GB → <b>153MB (6.7×)</b>; built greedy KV-cache decoding from scratch (524 ms/caption on CPU) with an ONNX/TorchScript export path.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Projects</h2><span class="path"><b>~/</b>projects · <b>ls</b></span></div>
+      <div class="grid">
+
+        <article class="card lead-proj reveal">
+          <a class="preview p4" href="https://github.com/rahulpaul-07/sentinel" target="_blank" rel="noopener" aria-label="Open the Sentinel repository">
+            <span class="pv-bar"><i class="d r"></i><i class="d y"></i><i class="d g"></i><span class="pv-url">github.com/rahulpaul-07/sentinel</span><span class="pv-open">code ↗</span></span>
+            <span class="pv-art"><svg width="66" height="72" viewBox="0 0 66 72" fill="none"><path d="M33 4 8 13v19c0 16 11 27 25 34 14-7 25-18 25-34V13L33 4z" fill="rgba(55,214,122,.10)" stroke="#37d67a" stroke-width="2"/><circle cx="29" cy="30" r="9" fill="none" stroke="#7cffb2" stroke-width="2.4"/><path d="M35.5 36.5l7.5 7.5" stroke="#7cffb2" stroke-width="2.4" stroke-linecap="round"/><path d="M25 30l3 3 6-7" fill="none" stroke="#37d67a" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><h3>Sentinel <span class="lead-badge">Featured</span></h3></div>
+            <p class="card-sub">Autonomous AppSec Agent</p>
+            <ul class="bul">
+              <li>An AI agent that <b>finds, proves, and fixes</b> vulnerabilities in source code: an LLM hunts candidate bugs, then a validator must <b>prove each one with a proof-of-concept exploit</b> run in a locked-down Docker sandbox — unproven claims are discarded, driving false positives toward zero.</li>
+              <li>Provider-agnostic model layer (LiteLLM) runs the same pipeline on local Ollama, Claude, or OpenAI; a patcher then proposes secure-fix diffs behind a human-approval gate.</li>
+              <li>On a small, hand-labeled benchmark across five vulnerability classes (SQL/command/path/deserialization, hardcoded secrets), a self-correction loop raised recall from 60% to 100% with precision holding at 100%, measured by a reproducible eval harness. Inspired by DARPA's AI Cyber Challenge.</li>
+            </ul>
+            <div class="tags"><span class="tag">Python</span><span class="tag">LLM Agents</span><span class="tag">LiteLLM</span><span class="tag">Ollama / Claude / OpenAI</span><span class="tag">Docker sandbox</span><span class="tag">AST</span><span class="tag">pytest</span></div>
+            <div class="card-links">
+              <a class="chip" href="https://github.com/rahulpaul-07/sentinel" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>View code</a>
+              <a class="chip" href="https://github.com/rahulpaul-07/sentinel/blob/master/README.md" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H5v12h12v-5h2v7H3V5h2z"/></svg>Write-up</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a class="preview p1" href="https://smart-course-generator.vercel.app" target="_blank" rel="noopener" aria-label="Open Smart Course Generator live demo">
+            <span class="pv-bar"><i class="d r"></i><i class="d y"></i><i class="d g"></i><span class="pv-url">smart-course-generator.vercel.app</span><span class="pv-open">live ↗</span></span>
+            <span class="pv-art"><img class="pv-img" src="assets/smart-course-generator.jpg" alt="Smart Course Generator live preview" loading="lazy" onerror="this.remove()"><svg width="96" height="66" viewBox="0 0 96 66" fill="none"><rect x="12" y="8" width="72" height="15" rx="4" fill="rgba(55,214,122,.28)" stroke="#37d67a"/><rect x="12" y="28" width="72" height="15" rx="4" fill="rgba(55,214,122,.16)" stroke="#37d67a" stroke-opacity=".7"/><rect x="12" y="48" width="46" height="13" rx="4" fill="rgba(55,214,122,.1)" stroke="#37d67a" stroke-opacity=".5"/></svg></span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><h3>Smart Course Generator</h3><span class="when">May – Jun 2026</span></div>
+            <ul class="bul">
+              <li>Full-stack <b>AI learning platform</b> that generates structured multi-module courses and streams them lesson-by-lesson over SSE, with adaptive quizzes, flashcards, and an AI-scored mock-interview mode.</li>
+              <li>Custom <b>multi-provider AI router</b> (Gemini → Groq → OpenRouter) with per-provider circuit breakers, retries, timeouts, and API-key rotation; quality made measurable via an LLM-as-judge eval harness with RAG grounding, wired into CI.</li>
+              <li>Secured with rotating, reuse-detecting refresh-token auth, Zod validation, Helmet, and rate limiting.</li>
+            </ul>
+            <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">SSE</span><span class="tag">Zod</span><span class="tag">Jest</span><span class="tag">Playwright</span></div>
+            <div class="card-links">
+              <a class="chip" href="https://smart-course-generator.vercel.app" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H5v12h12v-5h2v7H3V5h2z"/></svg>Live demo</a>
+              <a class="chip" href="https://github.com/rahulpaul-07/smart-course-generator" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a class="preview p2" href="https://rubiks-cube-studio.vercel.app" target="_blank" rel="noopener" aria-label="Open Rubik's Cube Studio live demo">
+            <span class="pv-bar"><i class="d r"></i><i class="d y"></i><i class="d g"></i><span class="pv-url">rubiks-cube-studio.vercel.app</span><span class="pv-open">live ↗</span></span>
+            <span class="pv-art"><img class="pv-img" src="assets/rubiks-cube-studio.jpg" alt="Rubik's Cube Studio live preview" loading="lazy" onerror="this.remove()"><svg width="70" height="70" viewBox="0 0 70 70"><g><rect x="4" y="4" width="18" height="18" rx="3" fill="#37d67a"/><rect x="26" y="4" width="18" height="18" rx="3" fill="#ff6b6b"/><rect x="48" y="4" width="18" height="18" rx="3" fill="#ffd166"/><rect x="4" y="26" width="18" height="18" rx="3" fill="#5fa8ff"/><rect x="26" y="26" width="18" height="18" rx="3" fill="#37d67a"/><rect x="48" y="26" width="18" height="18" rx="3" fill="#ff9f45"/><rect x="4" y="48" width="18" height="18" rx="3" fill="#ff6b6b"/><rect x="26" y="48" width="18" height="18" rx="3" fill="#e6ede9"/><rect x="48" y="48" width="18" height="18" rx="3" fill="#37d67a"/></g></svg></span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><h3>Rubik's Cube Studio</h3><span class="when">Apr – May 2026</span></div>
+            <ul class="bul">
+              <li>Implemented <b>Kociemba's two-phase algorithm</b> from scratch in TypeScript (cubie model, coordinate reduction, precomputed pruning tables, IDA* search) — averaging <b>~20.6 moves</b> at 100% correctness across <b>1,500+</b> random cubes vs. an independent reference engine.</li>
+              <li>Ran the solver in a <b>Web Worker</b> to drive a stutter-free Three.js 3D animation; added webcam cube scanning via an HSV color pipeline.</li>
+              <li>Shipped with 66 unit tests, Playwright E2E, strict TypeScript, and CI.</li>
+            </ul>
+            <div class="tags"><span class="tag">TypeScript</span><span class="tag">Three.js</span><span class="tag">Web Workers</span><span class="tag">Vite</span><span class="tag">Vitest</span><span class="tag">Playwright</span></div>
+            <div class="card-links">
+              <a class="chip" href="https://rubiks-cube-studio.vercel.app" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H5v12h12v-5h2v7H3V5h2z"/></svg>Live demo</a>
+              <a class="chip" href="https://github.com/rahulpaul-07/rubiks-cube-studio" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a class="preview p3" href="https://dns-sentinel.vercel.app" target="_blank" rel="noopener" aria-label="Open DNSentinel live demo">
+            <span class="pv-bar"><i class="d r"></i><i class="d y"></i><i class="d g"></i><span class="pv-url">dns-sentinel.vercel.app</span><span class="pv-open">live ↗</span></span>
+            <span class="pv-art"><img class="pv-img" src="assets/dnsentinel.jpg" alt="DNSentinel live preview" loading="lazy" onerror="this.remove()"><svg width="60" height="70" viewBox="0 0 60 70" fill="none"><path d="M30 4 6 13v19c0 16 11 27 24 33 13-6 24-17 24-33V13L30 4z" fill="rgba(55,214,122,.12)" stroke="#37d67a" stroke-width="2"/><path d="M15 37h8l4-11 6 20 4-9h8" fill="none" stroke="#7cffb2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <div class="card-body">
+            <div class="card-top"><h3>DNSentinel</h3><span class="when">Jun – Jul 2026</span></div>
+            <p class="card-sub">DNS Threat Intelligence Platform</p>
+            <ul class="bul">
+              <li>Full-stack <b>DNS threat-detection platform</b> (Manifest V3 Chrome-extension telemetry) classifying DGA, tunneling, exfiltration, and C2 beaconing via a 22-feature <b>Random Forest + Isolation Forest</b> ensemble.</li>
+              <li>Adaptive risk engine (µ + k·σ thresholding) driving a <b>SOAR auto-block / sinkhole</b> layer mapped to <b>MITRE ATT&amp;CK</b>, streamed to a SOC dashboard over SSE.</li>
+              <li>Diagnosed a scoring-inversion bug where a disabled model silently halved every ensemble score; validated with a benchmark over 25 real DGA families plus SHAP-explained PDF reports.</li>
+            </ul>
+            <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">scikit-learn</span><span class="tag">Docker</span><span class="tag">Chrome MV3</span><span class="tag">pytest</span></div>
+            <div class="card-links">
+              <a class="chip" href="https://dns-sentinel.vercel.app" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H5v12h12v-5h2v7H3V5h2z"/></svg>Live demo</a>
+              <a class="chip" href="https://github.com/rahulpaul-07/DNS_SENTINEL" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>Code</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <h3 class="more-h">More on GitHub <a class="allrepos" href="https://github.com/rahulpaul-07" target="_blank" rel="noopener">view all repos ↗</a></h3>
+      <div class="repo-grid">
+
+        <a class="repo reveal" href="https://github.com/rahulpaul-07/Rubiks-Cube-Solver" target="_blank" rel="noopener">
+          <span class="rtop"><svg class="rico" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0H14a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5H4.5a1 1 0 0 0 0 2H14a.5.5 0 0 1 0 1H4.5A2.5 2.5 0 0 1 2 13.5v-11zM4.5 1A1.5 1.5 0 0 0 3 2.5v9.05c.47-.2.97-.3 1.5-.3H13.5V1H4.5z"/></svg><h4>Rubiks-Cube-Solver</h4></span>
+          <p>High-performance C++ cube solver using IDA* search, pattern-database heuristics, and a bitboard representation — solves scrambles in under a second (Release build).</p>
+          <span class="lang"><i class="ld" style="background:#f34b7d"></i>C++</span>
+        </a>
+
+        <a class="repo reveal" href="https://github.com/rahulpaul-07/multi-source-candidate-transformer" target="_blank" rel="noopener">
+          <span class="rtop"><svg class="rico" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0H14a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5H4.5a1 1 0 0 0 0 2H14a.5.5 0 0 1 0 1H4.5A2.5 2.5 0 0 1 2 13.5v-11zM4.5 1A1.5 1.5 0 0 0 3 2.5v9.05c.47-.2.97-.3 1.5-.3H13.5V1H4.5z"/></svg><h4>multi-source-candidate-transformer</h4></span>
+          <p>Merges messy, conflicting candidate data from many sources into one canonical, deduplicated profile — provenance and confidence on every field, union-find identity resolution, fully deterministic and tested.</p>
+          <span class="lang"><i class="ld" style="background:#3572A5"></i>Python</span>
+        </a>
+
+        <a class="repo reveal" href="https://github.com/rahulpaul-07/AI-Botnet-Traffic-Detection" target="_blank" rel="noopener">
+          <span class="rtop"><svg class="rico" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0H14a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5H4.5a1 1 0 0 0 0 2H14a.5.5 0 0 1 0 1H4.5A2.5 2.5 0 0 1 2 13.5v-11zM4.5 1A1.5 1.5 0 0 0 3 2.5v9.05c.47-.2.97-.3 1.5-.3H13.5V1H4.5z"/></svg><h4>AI-Botnet-Traffic-Detection</h4></span>
+          <p>Real-time botnet intrusion detector — XGBoost/LightGBM on network flows with live Scapy packet capture, a FastAPI + Streamlit dashboard, SHAP explainability, and Docker.</p>
+          <span class="lang"><i class="ld" style="background:#3572A5"></i>Python</span>
+        </a>
+
+        <a class="repo reveal" href="https://github.com/rahulpaul-07/AI-Help-Extension" target="_blank" rel="noopener">
+          <span class="rtop"><svg class="rico" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0H14a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5H4.5a1 1 0 0 0 0 2H14a.5.5 0 0 1 0 1H4.5A2.5 2.5 0 0 1 2 13.5v-11zM4.5 1A1.5 1.5 0 0 0 3 2.5v9.05c.47-.2.97-.3 1.5-.3H13.5V1H4.5z"/></svg><h4>AI-Help-Extension</h4></span>
+          <p>Context-aware Chrome extension (Manifest V3) that embeds a Google Gemini AI tutor into the Maang.in CP platform — reads the problem and your code to give specific hints.</p>
+          <span class="lang"><i class="ld" style="background:#f1e05a"></i>JavaScript</span>
+        </a>
+
+        <a class="repo reveal" href="https://github.com/rahulpaul-07/Chrome-Extension-Problem-Tracker" target="_blank" rel="noopener">
+          <span class="rtop"><svg class="rico" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0H14a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5H4.5a1 1 0 0 0 0 2H14a.5.5 0 0 1 0 1H4.5A2.5 2.5 0 0 1 2 13.5v-11zM4.5 1A1.5 1.5 0 0 0 3 2.5v9.05c.47-.2.97-.3 1.5-.3H13.5V1H4.5z"/></svg><h4>Chrome-Extension-Problem-Tracker</h4></span>
+          <p>Chrome extension (MV3) to bookmark and track competitive-programming problems, backed by the Chrome Storage API.</p>
+          <span class="lang"><i class="ld" style="background:#f1e05a"></i>JavaScript</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Writing</h2><span class="path"><b>~/</b>writing</span></div>
+      <div class="pub reveal">
+        <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3h11a3 3 0 0 1 3 3v15l-4-2.2L10 21V6a3 3 0 0 0-3-3H4zm2 0h1a1 1 0 0 1 1 1v13.8l2-1.1V6a5 5 0 0 1 .1-1H6z"/></svg></div>
+        <div>
+          <h3>Applications of Quantum Computing for Internet of Things</h3>
+          <p class="meta">Springer Nature · book chapter, pp. 79–121 · 2026</p>
+          <p>Co-authored a 43-page chapter in <em>Quantum Computing, Sensing and Communications for IoT</em>, surveying 70+ papers on integrating quantum computing with IoT for security, optimization, and intelligent decision-making across Quantum ML, Post-Quantum Cryptography, and Quantum Sensing.</p>
+          <div class="card-links" style="margin-top:12px">
+            <a class="chip" href="https://link.springer.com/chapter/10.1007/978-981-95-6276-3_3" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H5v12h12v-5h2v7H3V5h2z"/></svg>Read on Springer</a>
+          </div>
+        </div>
+      </div>
+      <div class="notes reveal">
+        <span class="soon">SOON</span>
+        <p>Build logs in the works — writing up the DNSentinel scoring-inversion bug and what it took to build a near-optimal Rubik's-cube solver from scratch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Technical Skills</h2><span class="path"><b>~/</b>skills · <b>cat</b></span></div>
+      <div class="skills">
+        <div class="skillrow reveal"><h4>Languages</h4><div class="tags"><span class="tag">Python</span><span class="tag">C / C++</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">SQL</span></div></div>
+        <div class="skillrow reveal"><h4>AI / ML &amp; Deep Learning</h4><div class="tags"><span class="tag">PyTorch</span><span class="tag">Transformers (ViT, GPT-2)</span><span class="tag">Multimodal VLMs</span><span class="tag">Knowledge Distillation</span><span class="tag">INT8 Quantization</span><span class="tag">ONNX</span><span class="tag">TorchScript</span><span class="tag">scikit-learn</span></div></div>
+        <div class="skillrow reveal"><h4>GenAI &amp; Web</h4><div class="tags"><span class="tag">LLM Integration</span><span class="tag">RAG</span><span class="tag">Prompt Engineering</span><span class="tag">Multi-provider AI Routing</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">FastAPI</span><span class="tag">REST APIs</span><span class="tag">SSE</span><span class="tag">JWT / OAuth2</span></div></div>
+        <div class="skillrow reveal"><h4>Data, DevOps &amp; CS</h4><div class="tags"><span class="tag">MongoDB</span><span class="tag">SQLAlchemy</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">GitHub Actions (CI/CD)</span><span class="tag">Jest</span><span class="tag">Vitest</span><span class="tag">Playwright</span><span class="tag">pytest</span><span class="tag">DSA</span><span class="tag">OOP</span><span class="tag">DBMS</span><span class="tag">Computer Networks</span><span class="tag">Cyber Security</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEYOND -->
+  <section id="beyond">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Beyond the code</h2><span class="path"><b>~/</b>interests</span></div>
+      <div class="beyond-grid">
+        <div class="interest reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+          <h3>Competitive programming</h3>
+          <p>I compete on <b>LeetCode</b> (rating <b>1821</b>, top ~7.3% over 17 rated contests) and like keeping my data-structures and algorithms sharp between builds.</p>
+        </div>
+        <div class="interest reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M4 15h16M9 4v16M15 4v16"/></svg></div>
+          <h3>Algorithmic puzzles</h3>
+          <p>My favourite work is often the algorithmic kind — implementing <b>Kociemba's</b> two-phase cube solver from scratch, or reverse-engineering DGA behaviour for a threat detector.</p>
+        </div>
+        <div class="interest reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></div>
+          <h3>Emerging tech</h3>
+          <p>I enjoy reading and writing where fields collide — I co-authored a <b>Springer</b> survey on quantum computing for IoT, spanning quantum ML and post-quantum cryptography.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certs">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Achievements &amp; Certifications</h2><span class="path"><b>~/</b>credentials</span></div>
+      <div class="two">
+        <div class="panel reveal">
+          <h4>Achievements</h4>
+          <div class="metric"><span class="big">1821</span><span class="lbl">LeetCode contest rating · top 7.32% globally (17 rated contests)</span></div>
+          <ul class="ach-list">
+            <li><span><b>LeetCode</b> — competitive programming profile</span><span class="src"><a href="https://leetcode.com/u/rahul_paul07/" target="_blank" rel="noopener">profile ↗</a></span></li>
+            <li><span><b>Campus Ambassador</b> — Kshitij, IIT Kharagpur</span><span class="src"><a href="https://drive.google.com/file/d/1JfqzSKolcQtHw-9cKlz9MjxJQ-6qsqJg/view" target="_blank" rel="noopener">certificate ↗</a></span></li>
+          </ul>
+        </div>
+        <div class="panel reveal">
+          <h4>Certifications</h4>
+          <ul class="ach-list">
+            <li><span><b>IBM</b> — Threat Intelligence &amp; Hunting</span><span class="src"><a href="https://www.credly.com/badges/d973a340-5ddd-49d3-bda6-c90b5bc82f2b" target="_blank" rel="noopener">verify ↗</a></span></li>
+            <li><span><b>IBM</b> — Security Operations in Practice</span><span class="src"><a href="https://drive.google.com/file/d/1VPYKnCyhQOloXV3urAZihbwFMKYOWd4f/view" target="_blank" rel="noopener">verify ↗</a></span></li>
+            <li><span><b>Infosys Springboard</b> — Data Structures &amp; Algorithms</span><span class="src"><a href="https://drive.google.com/file/d/1Ef33ABXVbxE5kVSE1aSBLS805-bxT-1o/view" target="_blank" rel="noopener">verify ↗</a></span></li>
+            <li><span><b>MongoDB</b> — Introduction to MongoDB</span><span class="src"><a href="https://drive.google.com/file/d/1Weo2hLyNxUoWI7X1bLdoVMPx082nQ0IT/view" target="_blank" rel="noopener">verify ↗</a></span></li>
+            <li><span><b>Google Cloud</b> — Career Launchpad</span><span class="src"><a href="https://drive.google.com/file/d/1H9SLzEF0I2nFCGxjUMHBmqvYuBRCcu2_/view" target="_blank" rel="noopener">verify ↗</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Contact</h2><span class="path"><b>~/</b>contact</span></div>
+      <p class="lead reveal">Open to software-engineering, machine-learning, quantitative, and security internships in technology and finance (graduating 2027). The fastest way to reach me is email — happy to chat.</p>
+      <div class="contact-grid reveal">
+        <span class="copywrap">
+          <a class="btn primary" href="mailto:rahulpaul.csetech@gmail.com"><svg class="ic" viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.5l8 5 8-5V6H4zm16 3-8 5-8-5v9h16V9z"/></svg>rahulpaul.csetech@gmail.com</a>
+          <button class="btn" id="copyBtn" type="button" aria-label="Copy email"><svg class="ic" viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>copy</button>
+          <span class="copied" id="copied">copied ✓</span>
+        </span>
+        <a class="btn" href="tel:+919163130524"><svg class="ic" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>+91 91631 30524</a>
+        <a class="btn" href="https://github.com/rahulpaul-07" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>github.com/rahulpaul-07</a>
+        <a class="btn" href="https://www.linkedin.com/in/rahul-paul-554225251" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.3v1.6h.1c.5-.9 1.6-1.9 3.3-1.9 3.5 0 4.2 2.3 4.2 5.3v6.4zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9H7v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><span class="prompt">rahul@bengaluru</span>:~$ echo "Thanks for scrolling."</span>
+    <span>© 2026 Rahul Paul · built with HTML, CSS &amp; JavaScript</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.10, rootMargin:'0px 0px -40px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  } else { items.forEach(function(el){ el.classList.add('in'); }); }
+
+  var links = {};
+  document.querySelectorAll('.nav-links a').forEach(function(a){ links[a.getAttribute('href').slice(1)] = a; });
+  var secs = document.querySelectorAll('main section');
+  if('IntersectionObserver' in window){
+    var sObs = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ var id=e.target.id; Object.keys(links).forEach(function(k){ links[k].classList.remove('active'); }); if(links[id]) links[id].classList.add('active'); }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(s){ sObs.observe(s); });
+  }
+
+  document.querySelectorAll('.nav-links a').forEach(function(a){ a.addEventListener('click', function(){ document.getElementById('navlinks').classList.remove('open'); }); });
+
+  var typeEl = document.querySelector('.type');
+  if(typeEl && !reduce){
+    var words = (typeEl.getAttribute('data-words')||'').split('|').filter(Boolean);
+    if(words.length){
+      typeEl.textContent='';
+      var wi=0, ci=0, deleting=false;
+      function tick(){
+        var w = words[wi];
+        if(!deleting){ typeEl.textContent=w.slice(0,++ci); if(ci===w.length){ deleting=true; return setTimeout(tick,1400); } }
+        else { typeEl.textContent=w.slice(0,--ci); if(ci===0){ deleting=false; wi=(wi+1)%words.length; } }
+        setTimeout(tick, deleting?45:85);
+      }
+      setTimeout(tick,700);
+    }
+  }
+
+  var copyBtn = document.getElementById('copyBtn');
+  if(copyBtn){
+    copyBtn.addEventListener('click', function(){
+      var email='rahulpaul.csetech@gmail.com';
+      var done=function(){ var c=document.getElementById('copied'); c.classList.add('show'); setTimeout(function(){c.classList.remove('show');},1600); };
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(email).then(done).catch(done); }
+      else { var t=document.createElement('textarea'); t.value=email; document.body.appendChild(t); t.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(t); done(); }
+    });
+  }
+})();
+</script>
+</body>
+</html>
