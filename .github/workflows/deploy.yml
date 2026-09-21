@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+﻿name: Deploy to GitHub Pages
 
 on:
   push:
@@ -24,12 +24,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # Empty for the user site (rahulpaul-07.github.io).
-      # For any other repo name this becomes "/<repo>", so asset paths still resolve.
+      # Empty for the user site (rahulpaul-07.github.io), "/<repo>" for any other repo.
+      # The empty string must sit in the || branch: in `cond && '' || x`, '' counts as false.
       - name: Build
         run: npm run build
         env:
-          BASE_PATH: ${{ github.event.repository.name == format('{0}.github.io', github.repository_owner) && '' || format('/{0}', github.event.repository.name) }}
+          BASE_PATH: ${{ github.event.repository.name != format('{0}.github.io', github.repository_owner) && format('/{0}', github.event.repository.name) || '' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
