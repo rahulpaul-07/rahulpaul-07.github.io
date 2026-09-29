@@ -1,51 +1,43 @@
+import { ArrowUpRight } from "lucide-react";
+
 import { credentials, skills } from "@/data/portfolio";
-import { Section } from "./section";
+import { Em, Section } from "./section";
 
-// Printed like the output of `tree`, which is how a terminal shows nested things.
+const LABELS: Record<string, string> = {
+  languages: "Languages",
+  foundations: "Foundations",
+  backend: "Backend and web",
+  "testing-and-ops": "Testing and ops",
+  "ml-and-security": "ML and security",
+};
+
 export function Skills() {
-  const groups = Object.entries(skills);
-
   return (
-    <Section id="skills" command="tree skills/" title="Skills">
-      <div className="grid gap-16 lg:grid-cols-[1.4fr_1fr]">
-        <div className="font-mono text-[0.8rem] leading-7">
-          <p className="text-phosphor">skills/</p>
-          {groups.map(([group, items], gi) => {
-            const lastGroup = gi === groups.length - 1;
-            return (
-              <div key={group}>
-                <p>
-                  <span className="whitespace-pre text-muted/50">{lastGroup ? "└── " : "├── "}</span>
-                  <span className="text-phosphor">{group}/</span>
-                </p>
-                <p className="grid grid-cols-[auto_1fr]">
-                  <span className="whitespace-pre text-muted/50">{lastGroup ? "    └── " : "│   └── "}</span>
-                  <span className="text-ink">{items.join(", ")}</span>
-                </p>
-              </div>
-            );
-          })}
-        </div>
+    <Section id="skills" n="04" label="Skills" title={<>The tools, <Em>and the receipts.</Em></>}>
+      <dl className="mt-10 divide-y divide-rule border-y border-rule">
+        {Object.entries(skills).map(([group, items]) => (
+          <div key={group} className="grid gap-2 py-4 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-6">
+            <dt className="font-mono text-[12.5px] uppercase tracking-[.08em] text-muted sm:leading-[1.7rem]">
+              {LABELS[group] ?? group}
+            </dt>
+            <dd className="text-[15.5px] leading-[1.7] text-body">{items.join(" · ")}</dd>
+          </div>
+        ))}
+      </dl>
 
-        <div>
-          <p className="font-mono text-[0.75rem] text-muted">
-            <span className="text-phosphor-dim">$</span> ls certs/
-          </p>
-          <ul className="mt-4 divide-y divide-line border-y border-line">
-            {credentials.map((c) => (
-              <li key={c.name}>
-                <a href={c.url} target="_blank" rel="noreferrer" className="group flex items-baseline justify-between gap-4 py-4">
-                  <span>
-                    <span className="block text-ink group-hover:text-phosphor">{c.name}</span>
-                    <span className="text-[0.85rem] text-muted">{c.issuer}</span>
-                  </span>
-                  <span className="shrink-0 font-mono text-[0.7rem] text-phosphor-dim group-hover:text-phosphor">{c.url.includes("leetcode") ? "profile" : "verify"}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <h3 className="mt-14 font-mono text-[12px] uppercase tracking-[.14em] text-muted">Credentials</h3>
+      <ul className="mt-4 grid gap-px border border-rule bg-rule sm:grid-cols-2">
+        {credentials.map((c) => (
+          <li key={c.name} className="min-w-0 bg-paper">
+            <a href={c.url} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col p-4 hover:bg-panel">
+              <span className="font-mono text-[11.5px] uppercase tracking-[.08em] text-muted">{c.issuer}</span>
+              <span className="mt-1 text-[15px] font-medium text-ink">
+                {c.name} <ArrowUpRight className="inline h-3.5 w-3.5 text-muted group-hover:text-ink" aria-hidden />
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </Section>
   );
 }

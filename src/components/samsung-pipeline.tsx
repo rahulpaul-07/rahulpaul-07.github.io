@@ -20,10 +20,10 @@ export function SamsungPipeline() {
   const beam = {
     containerRef: container,
     duration: 3,
-    pathColor: "#16262b",
+    pathColor: "rgb(var(--rule))",
     pathOpacity: 1,
-    gradientStartColor: "#7dffb3",
-    gradientStopColor: "#ffb454",
+    gradientStartColor: "rgb(var(--accent))",
+    gradientStopColor: "rgb(var(--accent))",
   };
 
   return (
@@ -31,7 +31,7 @@ export function SamsungPipeline() {
       ref={container}
       role="img"
       aria-label="EmoCapNet pipeline: ViT plus GPT-2 teacher, distilled into a TinyCLIP-ViT-8M plus DistilGPT-2 student, quantization-aware trained to INT8, running on-device at 146 MB and about 450 ms per caption."
-      className="relative mt-10 flex flex-col gap-7 rounded-xl border border-line bg-panel/60 p-6 sm:flex-row sm:items-start sm:justify-between sm:gap-2"
+      className="relative mt-10 flex flex-col gap-7 border border-rule bg-panel p-6 sm:flex-row sm:items-start sm:justify-between sm:gap-2"
     >
       {pipeline.map((step, i) => {
         const Icon = ICONS[step.id as keyof typeof ICONS];
@@ -41,15 +41,15 @@ export function SamsungPipeline() {
             <div
               ref={nodeRefs[i]}
               className={cn(
-                "z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-void",
-                last ? "border-amber/50 text-amber shadow-[0_0_24px_-6px_rgb(255_180_84/0.6)]" : "border-line text-phosphor"
+                "z-10 flex h-12 w-12 shrink-0 items-center justify-center border bg-paper",
+                last ? "border-accent text-accent" : "border-rule text-ink"
               )}
             >
               <Icon className="h-5 w-5" />
             </div>
             <div>
-              <p className="font-mono text-[0.78rem] text-ink">{step.title}</p>
-              <p className={cn("text-[0.72rem] leading-snug", last ? "text-amber" : "text-muted")}>{step.detail}</p>
+              <p className="font-mono text-[12.5px] font-medium text-ink">{step.title}</p>
+              <p className={cn("text-[12px] leading-snug", last ? "text-accent" : "text-muted")}>{step.detail}</p>
             </div>
           </div>
         );

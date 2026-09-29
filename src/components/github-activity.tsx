@@ -126,28 +126,28 @@ export function GithubActivity() {
   }, []);
 
   return (
-    <div className="mt-16">
-      <p className="flex items-center gap-2 font-mono text-[0.75rem] text-muted">
-        <span className="text-phosphor-dim">$</span> git log --all --author=rahul
+    <div className="mt-14">
+      <h3 className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[.14em] text-muted">
+        Recent commits
         {state.status === "ready" && (
-          <span className="ml-2 inline-flex items-center gap-1.5 text-phosphor">
-            <span className="h-1.5 w-1.5 rounded-full bg-phosphor motion-safe:animate-pulse" /> live
+          <span className="inline-flex items-center gap-1.5 normal-case tracking-normal text-accent">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" /> live from GitHub
           </span>
         )}
-      </p>
+      </h3>
 
-      <ul className="mt-4 divide-y divide-line border-y border-line font-mono text-[0.8rem]" aria-live="polite">
+      <ul className="mt-4 divide-y divide-rule border-y border-rule font-mono text-[13px]" aria-live="polite">
         {state.status === "loading" &&
           Array.from({ length: 4 }, (_, i) => (
             <li key={i} className="py-3.5">
-              <span className="block h-3 w-2/3 animate-pulse rounded bg-line" />
+              <span className="block h-3 w-2/3 animate-pulse bg-rule" />
             </li>
           ))}
 
         {state.status === "error" && (
           <li className="py-4 text-muted">
             Couldn&apos;t reach GitHub just now (its public API allows 60 requests an hour).{" "}
-            <a href={person.links.github} target="_blank" rel="noreferrer" className="text-phosphor underline underline-offset-4">
+            <a href={person.links.github} target="_blank" rel="noreferrer" className="text-ink underline underline-offset-4">
               See recent work on GitHub
             </a>
           </li>
@@ -169,12 +169,12 @@ export function GithubActivity() {
                   rel="noreferrer"
                   className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-3 py-3.5 sm:grid-cols-[auto_13rem_1fr_auto]"
                 >
-                  <Icon className="h-3.5 w-3.5 translate-y-0.5 text-phosphor-dim" aria-hidden="true" />
-                  <span className="truncate text-phosphor">{it.repo}</span>
-                  <span className="col-span-3 col-start-2 row-start-2 truncate text-ink group-hover:text-phosphor sm:col-span-1 sm:col-start-3 sm:row-start-1">
+                  <Icon className="h-3.5 w-3.5 translate-y-0.5 text-muted" aria-hidden="true" />
+                  <span className="truncate text-ink">{it.repo}</span>
+                  <span className="col-span-3 col-start-2 row-start-2 truncate text-body group-hover:text-ink group-hover:underline sm:col-span-1 sm:col-start-3 sm:row-start-1">
                     {it.text}
                   </span>
-                  <span className="text-[0.7rem] text-muted">{timeAgo(it.at)}</span>
+                  <span className="text-[11.5px] text-muted">{timeAgo(it.at)}</span>
                 </a>
               </motion.li>
             );

@@ -5,13 +5,13 @@ const site = "https://rahulpaul-07.github.io";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
-  title: "Rahul Paul",
+  title: "Rahul Paul — ML, backend and security engineering",
   description:
-    "Computer Science (Cyber Security) undergraduate building at the intersection of machine learning, web engineering and security. Open to internships from January 2027.",
+    "Computer Science (Cyber Security) undergraduate building where machine learning, backend systems and security meet, with the tests and measurements to show it works. Open to internships from January 2027.",
   authors: [{ name: "Rahul Paul" }],
   openGraph: {
     title: "Rahul Paul",
-    description: "ML, full-stack and security projects by Rahul Paul.",
+    description: "ML, backend and security projects, each measured against a benchmark.",
     url: site,
     type: "website",
     images: [{ url: "/assets/og.png", width: 1200, height: 630, alt: "Rahul Paul" }],
@@ -20,10 +20,17 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#03070a",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f6f4ef" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e0f11" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
+
+// Sets the theme before first paint so the page never flashes the wrong one.
+const THEME_SCRIPT =
+  "try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='light'}";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -34,15 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Martian+Mono:wdth,wght@75..112.5,300..700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
         />
-        {/* Runs before first paint so the boot screen never flashes on repeat visits */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{if(sessionStorage.getItem('rp-booted')||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('booted')}catch(e){}",
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body>{children}</body>
     </html>

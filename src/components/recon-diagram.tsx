@@ -14,22 +14,22 @@ function Node({
   nodeRef: React.RefObject<HTMLDivElement | null>;
   label: string;
   icon: React.ComponentType<{ className?: string }>;
-  tone?: "ink" | "phosphor" | "amber";
+  tone?: "ink" | "accent" | "warn";
 }) {
   return (
     <div className="flex flex-col items-center gap-1.5">
       <div
         ref={nodeRef}
         className={cn(
-          "z-10 flex h-11 w-11 items-center justify-center rounded-xl border bg-void",
-          tone === "phosphor" && "h-14 w-14 border-phosphor/60 text-phosphor shadow-[0_0_24px_-4px_rgb(125_255_179/0.5)]",
-          tone === "amber" && "border-amber/40 text-amber",
-          tone === "ink" && "border-line text-ink"
+          "z-10 flex h-11 w-11 items-center justify-center border bg-paper",
+          tone === "accent" && "h-14 w-14 border-accent text-accent",
+          tone === "warn" && "border-warn/60 text-warn",
+          tone === "ink" && "border-rule text-ink"
         )}
       >
-        <Icon className={tone === "phosphor" ? "h-6 w-6" : "h-5 w-5"} />
+        <Icon className={tone === "accent" ? "h-6 w-6" : "h-5 w-5"} />
       </div>
-      <span className="text-center font-mono text-[0.62rem] leading-tight text-muted">{label}</span>
+      <span className="text-center font-mono text-[11px] leading-tight text-muted">{label}</span>
     </div>
   );
 }
@@ -44,7 +44,7 @@ export function ReconDiagram({ className }: { className?: string }) {
   const matched = useRef<HTMLDivElement>(null);
   const exceptions = useRef<HTMLDivElement>(null);
 
-  const beam = { containerRef: container, pathColor: "#16262b", pathOpacity: 1, gradientStartColor: "#7dffb3", gradientStopColor: "#2f7a57" };
+  const beam = { containerRef: container, pathColor: "rgb(var(--rule))", pathOpacity: 1, gradientStartColor: "rgb(var(--accent))", gradientStopColor: "rgb(var(--accent))" };
 
   return (
     <div
@@ -58,10 +58,10 @@ export function ReconDiagram({ className }: { className?: string }) {
         <Node nodeRef={gateway} label="gateway report" icon={CreditCard} />
         <Node nodeRef={bank} label="bank statement" icon={Landmark} />
       </div>
-      <Node nodeRef={engine} label="engine" icon={Scale} tone="phosphor" />
+      <Node nodeRef={engine} label="engine" icon={Scale} tone="accent" />
       <div className="flex flex-col gap-10">
-        <Node nodeRef={matched} label="matched" icon={CircleCheck} tone="phosphor" />
-        <Node nodeRef={exceptions} label="exceptions + reason" icon={TriangleAlert} tone="amber" />
+        <Node nodeRef={matched} label="matched" icon={CircleCheck} tone="accent" />
+        <Node nodeRef={exceptions} label="exceptions + reason" icon={TriangleAlert} tone="warn" />
       </div>
 
       <AnimatedBeam {...beam} fromRef={ledger} toRef={engine} curvature={-40} duration={4} />
@@ -75,8 +75,8 @@ export function ReconDiagram({ className }: { className?: string }) {
         curvature={30}
         duration={4}
         delay={2}
-        gradientStartColor="#ffb454"
-        gradientStopColor="#7a5520"
+        gradientStartColor="rgb(var(--warn))"
+        gradientStopColor="rgb(var(--warn))"
       />
     </div>
   );

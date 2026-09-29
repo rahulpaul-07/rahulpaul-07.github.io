@@ -1,76 +1,58 @@
 // Adapted from Magic UI (https://magicui.design), MIT License, Copyright (c) Magic UI.
-"use client"
+// Changes: the real value is in the markup from the start, so a page captured
+// without scrolling (a link preview, print, a crawler) never shows a wrong number;
+// the count-up is a fixed-length tween, because the original spring's long tail
+// sat on figures that were never measured; reduced motion skips it.
+"use client";
 
-import { useEffect, useRef, type ComponentPropsWithoutRef } from "react"
-import { useInView, useMotionValue, useSpring } from "motion/react"
+import { useEffect, useRef } from "react";
+import { animate, useInView, useReducedMotion } from "motion/react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-interface NumberTickerProps extends ComponentPropsWithoutRef<"span"> {
-  value: number
-  startValue?: number
-  direction?: "up" | "down"
-  delay?: number
-  decimalPlaces?: number
-}
+const format = (n: number, decimals: number) =>
+  n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
 export function NumberTicker({
   value,
-  startValue = 0,
-  direction = "up",
-  delay = 0,
-  className,
   decimalPlaces = 0,
-  ...props
-}: NumberTickerProps) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const motionValue = useMotionValue(direction === "down" ? value : startValue)
-  const springValue = useSpring(motionValue, {
-    damping: 60,
-    stiffness: 100,
-  })
-  const isInView = useInView(ref, { once: true, margin: "0px" })
+  delay = 0,
+  duration = 1.1,
+  className,
+}: {
+  value: number;
+  decimalPlaces?: number;
+  delay?: number;
+  duration?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const reduced = useReducedMotion();
+  const inView = useInView(ref, { once: true, margin: "0px" });
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout> | null = null
-
-    if (isInView) {
-      timer = setTimeout(() => {
-        motionValue.set(direction === "down" ? startValue : value)
-      }, delay * 1000)
-    }
-
+    if (!inView || reduced) return;
+    const el = ref.current;
+    const controls = animate(0, value, {
+      delay,
+      duration,
+      ease: "easeOut",
+      onUpdate: (latest) => {
+        if (el) el.textContent = format(latest, decimalPlaces);
+      },
+      onComplete: () => {
+        if (el) el.textContent = format(value, decimalPlaces);
+      },
+    });
     return () => {
-      if (timer !== null) {
-        clearTimeout(timer)
-      }
-    }
-  }, [motionValue, isInView, delay, value, direction, startValue])
-
-  useEffect(
-    () =>
-      springValue.on("change", (latest) => {
-        if (ref.current) {
-          ref.current.textContent = Intl.NumberFormat("en-US", {
-            minimumFractionDigits: decimalPlaces,
-            maximumFractionDigits: decimalPlaces,
-          }).format(Number(latest.toFixed(decimalPlaces)))
-        }
-      }),
-    [springValue, decimalPlaces]
-  )
+      controls.stop();
+      if (el) el.textContent = format(value, decimalPlaces);
+    };
+  }, [inView, reduced, value, decimalPlaces, delay, duration]);
 
   return (
-    <span
-      ref={ref}
-      className={cn(
-        "inline-block tabular-nums",
-        className
-      )}
-      {...props}
-    >
-      {/* show the starting number before the count begins */}
-      {direction === "down" ? value : startValue}
+    <span ref={ref} className={cn("inline-block tabular-nums", className)}>
+      {format(value, decimalPlaces)}
     </span>
-  )
+  );
 }

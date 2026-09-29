@@ -2,7 +2,7 @@
 "use client"
 
 import { useEffect, useId, useState, type RefObject } from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -50,6 +50,8 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   endYOffset = 0,
 }) => {
   const id = useId()
+  // Under reduced motion only the static path is drawn.
+  const reduced = useReducedMotion()
   const [pathD, setPathD] = useState("")
   const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 })
 
@@ -136,13 +138,15 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
       )}
       viewBox={`0 0 ${svgDimensions.width} ${svgDimensions.height}`}
     >
+      {/* Colours go through style: CSS variables do not resolve in SVG attributes. */}
       <path
         d={pathD}
-        stroke={pathColor}
+        style={{ stroke: pathColor }}
         strokeWidth={pathWidth}
         strokeOpacity={pathOpacity}
         strokeLinecap="round"
       />
+      {reduced ? null : (
       <path
         d={pathD}
         strokeWidth={pathWidth}
@@ -150,6 +154,8 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         strokeOpacity="1"
         strokeLinecap="round"
       />
+      )}
+      {reduced ? null : (
       <defs>
         <motion.linearGradient
           className="transform-gpu"
@@ -175,16 +181,13 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
             repeatDelay,
           }}
         >
-          <stop stopColor={gradientStartColor} stopOpacity="0"></stop>
-          <stop stopColor={gradientStartColor}></stop>
-          <stop offset="32.5%" stopColor={gradientStopColor}></stop>
-          <stop
-            offset="100%"
-            stopColor={gradientStopColor}
-            stopOpacity="0"
-          ></stop>
+          <stop style={{ stopColor: gradientStartColor, stopOpacity: 0 }}></stop>
+          <stop style={{ stopColor: gradientStartColor }}></stop>
+          <stop offset="32.5%" style={{ stopColor: gradientStopColor }}></stop>
+          <stop offset="100%" style={{ stopColor: gradientStopColor, stopOpacity: 0 }}></stop>
         </motion.linearGradient>
       </defs>
+      )}
     </svg>
   )
 }
