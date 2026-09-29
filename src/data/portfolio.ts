@@ -85,8 +85,27 @@ export type Project = {
   diagram?: "recon";
 };
 
-// Every claim below is taken from the project's own README or results files.
+// Every claim below is taken from the project's own README or results files. The first
+// three use the résumé's wording, in the résumé's order.
 export const projects: Project[] = [
+  {
+    id: "courses",
+    name: "Smart Course Generator",
+    tagline: "Generates full courses and streams them lesson by lesson",
+    period: "May – Jun 2026",
+    tags: ["Full-stack", "ML"],
+    image: "/assets/smart-course-generator.jpg",
+    points: [
+      "Engineered a custom multi-provider AI router (Gemini → Groq → OpenRouter) with per-provider circuit breakers, retry with backoff, and timeouts, so an upstream outage or rate limit degrades the response instead of failing it.",
+      "Cut perceived latency by streaming courses lesson-by-lesson over SSE, so users see first output in seconds instead of waiting on a multi-minute generation. Secured it with rotating refresh tokens and per-route rate limiting.",
+      "Built the quality gate alongside the feature: unit and integration tests, Playwright end-to-end suites, and autocannon load tests in CI, plus an LLM-as-judge eval harness that fails the build on output-quality regressions.",
+    ],
+    stack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "SSE", "Zod", "Jest", "Playwright", "autocannon", "GitHub Actions"],
+    links: [
+      { label: "Live demo", href: "https://smart-course-generator.vercel.app" },
+      { label: "Source", href: "https://github.com/rahulpaul-07/smart-course-generator" },
+    ],
+  },
   {
     id: "recon",
     name: "Three-Way Reconciliation Engine",
@@ -95,17 +114,34 @@ export const projects: Project[] = [
     tags: ["Backend", "Algorithms"],
     diagram: "recon",
     points: [
-      "Tiered deterministic matchers reconcile a merchant order ledger against a payment-gateway report and a bank statement. On the 141-entity benchmark, 90.8% of entities resolve at 100% accuracy across 14 defect classes, graded against a ground-truth answer key the engine never reads; 92.7% ± 0.4% across 12 independent batches.",
-      "Every unresolved record lands in a categorised exception report with its reason. Nothing is silently dropped, and 26 of 26 planted defects of unseen classes were flagged.",
-      "The Hungarian algorithm, written from scratch, resolves contested bank-to-settlement matches jointly instead of greedily, behind a verification gate that encodes paise-exact money, method-dependent MDR and T+1 working-day settlement.",
-      "Roughly 230K–290K entities per second from 141 to 5,022 entities, at linear cost. 168 tests (the original suite verified by mutation) and a CI check that fails the build if measured accuracy moves.",
+      "Built a data-processing engine that reconciles a merchant order ledger, a payment-gateway report, and a bank statement through tiered deterministic matchers, resolving 90.8% of 141 entities at 100% accuracy across 14 defect classes. Every unresolved record lands in a categorised exception report with its reason.",
+      "Implemented the O(n³) Hungarian algorithm from scratch to resolve contested bank-to-settlement matches jointly rather than greedily, behind a verification gate encoding paise-exact money, MDR, and T+1 settlement rules.",
+      "Sustains ~233K entities/sec, flat from 141 to 5,022 entities, and is guarded by 111 tests whose adequacy was verified by mutation testing plus a CI pipeline that asserts the measured accuracy, so a regression fails the build.",
     ],
     metric: { text: "90.8%", to: 90.8, decimals: 1, after: "%", label: "resolved at 100% accuracy" },
-    stack: ["Python", "FastAPI", "Hungarian algorithm", "pytest", "Mutation testing", "Render"],
+    stack: ["Python", "FastAPI", "Uvicorn", "pytest", "Mutation testing", "GitHub Actions", "Render"],
     links: [
       { label: "Live dashboard", href: "https://rahulpaul-07.github.io/Three-Way-Financial-Reconciliation-Engine/" },
       { label: "Walkthrough video", href: "https://youtu.be/NjFKpmBX1Zk" },
       { label: "Source", href: "https://github.com/rahulpaul-07/Three-Way-Financial-Reconciliation-Engine" },
+    ],
+  },
+  {
+    id: "dnsentinel",
+    name: "DNSentinel",
+    tagline: "Real-time DNS threat detection with containment that can't wedge the network",
+    period: "Apr – Jun 2026",
+    tags: ["Security", "ML", "Full-stack"],
+    image: "/assets/dnsentinel.jpg",
+    points: [
+      "Built a real-time detection platform: a FastAPI service over SQLAlchemy with 21 REST endpoints and SSE live streaming to a React dashboard. Availability is handled explicitly: a liveness probe returns 503 when the database degrades, and containment rules auto-expire after 24 h so a false positive cannot wedge the network.",
+      "Traced 407 false positives to the default 0.5 decision threshold, not the features, and recalibrated against an explicit false-positive budget: 407 → 21 at unchanged 100% recall on 12,000 domains across 4 DGA families.",
+    ],
+    metric: { text: "407 → 21", before: "407 → ", to: 21, label: "false positives, same recall" },
+    stack: ["Python", "FastAPI", "SQLAlchemy", "SQLite", "React", "scikit-learn", "Docker Compose", "pytest", "CodeQL"],
+    links: [
+      { label: "Live demo", href: "https://dns-sentinel.vercel.app" },
+      { label: "Source", href: "https://github.com/rahulpaul-07/dns-sentinel" },
     ],
   },
   {
@@ -125,43 +161,6 @@ export const projects: Project[] = [
     links: [
       { label: "Project page", href: "https://rahulpaul-07.github.io/Sentinel-Autonomous-AppSec-Agent/" },
       { label: "Source", href: "https://github.com/rahulpaul-07/Sentinel-Autonomous-AppSec-Agent" },
-    ],
-  },
-  {
-    id: "dnsentinel",
-    name: "DNSentinel",
-    tagline: "Real-time DNS threat detection with containment that can't wedge the network",
-    period: "Apr – Jun 2026",
-    tags: ["Security", "ML", "Full-stack"],
-    image: "/assets/dnsentinel.jpg",
-    points: [
-      "A FastAPI service streams to a React analyst dashboard over SSE and classifies DNS traffic for DGA domains, tunnelling and exfiltration with a 22-feature Random Forest and an Isolation Forest, with SHAP attribution for every flagged query.",
-      "Traced 407 false positives to the default 0.5 decision threshold rather than the features, and recalibrated against an explicit false-positive budget: 407 to 21 at unchanged 100% recall on a family-stratified benchmark of 12,000 domains across 4 DGA families.",
-      "Block and sinkhole rules auto-expire after 24 hours so a false positive can't wedge the network, and a liveness probe returns 503 when the database degrades.",
-    ],
-    metric: { text: "407 → 21", before: "407 → ", to: 21, label: "false positives, same recall" },
-    stack: ["Python", "FastAPI", "SQLAlchemy", "React", "scikit-learn", "SHAP", "Docker", "CodeQL"],
-    links: [
-      { label: "Live demo", href: "https://dns-sentinel.vercel.app" },
-      { label: "Source", href: "https://github.com/rahulpaul-07/dns-sentinel" },
-    ],
-  },
-  {
-    id: "courses",
-    name: "Smart Course Generator",
-    tagline: "Generates full courses and streams them lesson by lesson",
-    period: "May – Jun 2026",
-    tags: ["Full-stack", "ML"],
-    image: "/assets/smart-course-generator.jpg",
-    points: [
-      "A multi-provider AI router (Gemini, then Groq, then OpenRouter) with per-provider circuit breakers, retry with backoff, timeouts and key rotation, so one upstream outage degrades the response instead of failing it.",
-      "Courses stream lesson by lesson over SSE, so users see output in seconds instead of waiting on a long generation. Every generation is schema-validated before it is saved.",
-      "Ten MongoDB collections with indexes chosen per access pattern and a TTL index bounding telemetry growth. Unit, integration and Playwright end-to-end tests run in CI, along with an eval harness that checks the output contract.",
-    ],
-    stack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "SSE", "Zod", "Playwright"],
-    links: [
-      { label: "Live demo", href: "https://smart-course-generator.vercel.app" },
-      { label: "Source", href: "https://github.com/rahulpaul-07/smart-course-generator" },
     ],
   },
   {
