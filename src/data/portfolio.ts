@@ -59,17 +59,14 @@ export const pipeline = [
   { id: "device", title: "On-device", detail: "146 MB, ~450 ms on CPU" },
 ];
 
-export const TAGS = ["Security", "ML", "Backend", "Full-stack", "Algorithms", "Control"] as const;
-export type Tag = (typeof TAGS)[number];
-
 export type Project = {
   id: string; // used by the terminal: `open <id>`
   name: string;
   tagline: string;
   period?: string;
-  tags: Tag[]; // drives the filter on the projects list
+  size: "lg" | "md" | "sm"; // width in the bento grid
   points: string[];
-  // `text` is the plain version (screen readers, no-JS); the rest drives the count-up animation
+  // `text` is the plain version (terminal, screen readers); the rest drives the count-up animation
   metric?: {
     text: string;
     label: string;
@@ -85,45 +82,44 @@ export type Project = {
   diagram?: "recon";
 };
 
-// Every claim below is taken from the project's own README or results files. The first
-// three use the résumé's wording, in the résumé's order.
 export const projects: Project[] = [
-  {
-    id: "courses",
-    name: "Smart Course Generator",
-    tagline: "Generates full courses and streams them lesson by lesson",
-    period: "May – Jun 2026",
-    tags: ["Full-stack", "ML"],
-    image: "/assets/smart-course-generator.jpg",
-    points: [
-      "Engineered a custom multi-provider AI router (Gemini → Groq → OpenRouter) with per-provider circuit breakers, retry with backoff, and timeouts, so an upstream outage or rate limit degrades the response instead of failing it.",
-      "Cut perceived latency by streaming courses lesson-by-lesson over SSE, so users see first output in seconds instead of waiting on a multi-minute generation. Secured it with rotating refresh tokens and per-route rate limiting.",
-      "Built the quality gate alongside the feature: unit and integration tests, Playwright end-to-end suites, and autocannon load tests in CI, plus an LLM-as-judge eval harness that fails the build on output-quality regressions.",
-    ],
-    stack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "SSE", "Zod", "Jest", "Playwright", "autocannon", "GitHub Actions"],
-    links: [
-      { label: "Live demo", href: "https://smart-course-generator.vercel.app" },
-      { label: "Source", href: "https://github.com/rahulpaul-07/smart-course-generator" },
-    ],
-  },
   {
     id: "recon",
     name: "Three-Way Reconciliation Engine",
     tagline: "Matches the order ledger, gateway report and bank statement, and explains every record it can't",
     period: "Aug – Sep 2026",
-    tags: ["Backend", "Algorithms"],
+    size: "lg",
     diagram: "recon",
     points: [
-      "Built a data-processing engine that reconciles a merchant order ledger, a payment-gateway report, and a bank statement through tiered deterministic matchers, resolving 90.8% of 141 entities at 100% accuracy across 14 defect classes. Every unresolved record lands in a categorised exception report with its reason.",
-      "Implemented the O(n³) Hungarian algorithm from scratch to resolve contested bank-to-settlement matches jointly rather than greedily, behind a verification gate encoding paise-exact money, MDR, and T+1 settlement rules.",
-      "Sustains ~233K entities/sec, flat from 141 to 5,022 entities, and is guarded by 111 tests whose adequacy was verified by mutation testing plus a CI pipeline that asserts the measured accuracy, so a regression fails the build.",
+      "Tiered deterministic matchers reconcile a merchant order ledger against a payment-gateway report and a bank statement. On the 141-entity benchmark, 90.8% of entities resolve at 100% accuracy across 14 defect classes, graded against a ground-truth answer key the engine never reads.",
+      "Every unresolved record lands in a categorised exception report with its reason. Nothing is silently dropped.",
+      "The Hungarian algorithm, written from scratch, resolves contested bank-to-settlement matches jointly instead of greedily, behind a verification gate that encodes paise-exact money, method-dependent MDR and T+1 working-day settlement.",
+      "Sustains about 233K entities per second, flat from 141 to 5,022 entities. Guarded by 111 mutation-verified tests and a CI check that fails the build if measured accuracy moves.",
     ],
     metric: { text: "90.8%", to: 90.8, decimals: 1, after: "%", label: "resolved at 100% accuracy" },
-    stack: ["Python", "FastAPI", "Uvicorn", "pytest", "Mutation testing", "GitHub Actions", "Render"],
+    stack: ["Python", "FastAPI", "Hungarian algorithm", "pytest", "Mutation testing", "Render"],
     links: [
-      { label: "Live dashboard", href: "https://rahulpaul-07.github.io/Three-Way-Financial-Reconciliation-Engine/" },
+      { label: "Live app", href: "https://recon-engine-yjim.onrender.com" },
       { label: "Walkthrough video", href: "https://youtu.be/NjFKpmBX1Zk" },
       { label: "Source", href: "https://github.com/rahulpaul-07/Three-Way-Financial-Reconciliation-Engine" },
+    ],
+  },
+  {
+    id: "sentinel",
+    name: "Sentinel",
+    tagline: "An AppSec agent that has to prove every bug before it reports it",
+    period: "Jun – Sep 2026",
+    size: "md",
+    points: [
+      "An LLM proposes candidate vulnerabilities, and each one is tested by a generated exploit that must drive the real code in an ephemeral Docker sandbox (no network, 256 MB and 1 CPU, 20-second hard kill) while a line tracer records what ran. A finding counts only if the accused line executed.",
+      "The agent's own blast radius is limited to read-only, path-scoped tools that reject directory escapes. Fixes apply only through a human approval gate, after the proving exploit is replayed against them.",
+      "Measured on 5 vulnerability classes plus a clean control: strict recall 60–80% and precision 75–100% over three runs, with a false proof on the control in two of them, published with the results.",
+    ],
+    metric: { text: "60–80%", before: "60–", to: 80, after: "%", label: "strict recall, line-proven, 3 runs" },
+    stack: ["Python", "Docker", "LiteLLM", "Python ast", "pytest", "GitHub Actions"],
+    links: [
+      { label: "Project page", href: "https://rahulpaul-07.github.io/Sentinel-Autonomous-AppSec-Agent/" },
+      { label: "Source", href: "https://github.com/rahulpaul-07/Sentinel-Autonomous-AppSec-Agent" },
     ],
   },
   {
@@ -131,48 +127,48 @@ export const projects: Project[] = [
     name: "DNSentinel",
     tagline: "Real-time DNS threat detection with containment that can't wedge the network",
     period: "Apr – Jun 2026",
-    tags: ["Security", "ML", "Full-stack"],
+    size: "md",
     image: "/assets/dnsentinel.jpg",
     points: [
-      "Built a real-time detection platform: a FastAPI service over SQLAlchemy with 21 REST endpoints and SSE live streaming to a React dashboard. Availability is handled explicitly: a liveness probe returns 503 when the database degrades, and containment rules auto-expire after 24 h so a false positive cannot wedge the network.",
-      "Traced 407 false positives to the default 0.5 decision threshold, not the features, and recalibrated against an explicit false-positive budget: 407 → 21 at unchanged 100% recall on 12,000 domains across 4 DGA families.",
+      "A FastAPI service with 21 REST endpoints and SSE streaming to a React analyst dashboard classifies DNS traffic for DGA, tunnelling and exfiltration with a 22-feature Random Forest + Isolation Forest ensemble.",
+      "Traced 407 false positives to the default 0.5 decision threshold rather than the features, and recalibrated against an explicit false-positive budget: 407 to 21 at unchanged 100% recall on a family-stratified benchmark of 12,000 domains across 4 DGA families.",
+      "Block and sinkhole rules auto-expire after 24 hours so a false positive can't wedge the network, and a liveness probe returns 503 when the database degrades.",
     ],
-    metric: { text: "407 → 21", before: "407 → ", to: 21, label: "false positives, same recall" },
-    stack: ["Python", "FastAPI", "SQLAlchemy", "SQLite", "React", "scikit-learn", "Docker Compose", "pytest", "CodeQL"],
+    metric: { text: "407 → 21", before: "407 → ", from: 407, to: 21, label: "false positives, same recall" },
+    stack: ["Python", "FastAPI", "SQLAlchemy", "React", "scikit-learn", "SHAP", "Docker", "CodeQL"],
     links: [
       { label: "Live demo", href: "https://dns-sentinel.vercel.app" },
       { label: "Source", href: "https://github.com/rahulpaul-07/dns-sentinel" },
     ],
   },
   {
-    id: "sentinel",
-    name: "Sentinel",
-    tagline: "An AppSec agent whose findings count only once an exploit has run the exact line it accused",
-    period: "Jun – Sep 2026",
-    tags: ["Security", "ML"],
+    id: "courses",
+    name: "Smart Course Generator",
+    tagline: "Generates full courses and streams them lesson by lesson",
+    period: "May – Jun 2026",
+    size: "md",
+    image: "/assets/smart-course-generator.jpg",
     points: [
-      "An LLM proposes candidate vulnerabilities. Each is tested by a generated exploit that must import and drive the real code, in a Docker sandbox with no network, a read-only root, every capability dropped and a 20-second kill, while a line tracer records what executed.",
-      "Findings are graded on a five-tier evidence ladder: an exploit that succeeds without running the accused line is class-only and never counted. Fixes are verified by replaying the proving exploit against the patched code.",
-      "Measured on a five-bug benchmark plus a clean control: strict recall 60–80% and precision 75–100% over three runs. Two runs had a false proof on the control, published with the results and listed as the top open issue.",
-      "A security audit of its own pipeline fixed a critical bypass where an exploit could grade itself, each fix pinned by a regression test. 340 offline tests plus 15 against a real Docker daemon.",
+      "A multi-provider AI router (Gemini, then Groq, then OpenRouter) with per-provider circuit breakers, retry with backoff, timeouts and key rotation, so one upstream outage degrades the response instead of failing it.",
+      "Courses stream lesson by lesson over SSE, so users see output in seconds instead of waiting on a long generation.",
+      "Ten MongoDB collections with compound indexes chosen per access pattern and a TTL index bounding telemetry growth. Playwright end-to-end tests, autocannon load tests and an LLM-as-judge eval harness run in CI.",
     ],
-    metric: { text: "60–80%", before: "60–", to: 80, after: "%", label: "strict recall, line-proven, 3 runs" },
-    stack: ["Python", "Docker", "LiteLLM", "AST taint analysis", "SARIF", "pytest", "GitHub Actions"],
+    stack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "SSE", "Zod", "Playwright"],
     links: [
-      { label: "Project page", href: "https://rahulpaul-07.github.io/Sentinel-Autonomous-AppSec-Agent/" },
-      { label: "Source", href: "https://github.com/rahulpaul-07/Sentinel-Autonomous-AppSec-Agent" },
+      { label: "Live demo", href: "https://smart-course-generator.vercel.app" },
+      { label: "Source", href: "https://github.com/rahulpaul-07/smart-course-generator" },
     ],
   },
   {
     id: "cube",
     name: "Rubik's Cube Studio",
     tagline: "Kociemba's two-phase solver, written from scratch, with webcam scanning",
-    tags: ["Algorithms", "Full-stack"],
+    size: "md",
     image: "/assets/rubiks-cube-studio.jpg",
     points: [
       "Cubie model, coordinate reduction, BFS-built pruning tables and IDA* search in TypeScript: about 20.6 moves on average and every cube within 26 moves across 1,500+ random scrambles, each re-verified by an independent engine.",
       "The 0.7-second table build and the search run in a Web Worker so the Three.js render loop never blocks.",
-      "Webcam scanning classifies stickers with an HSV colour pipeline, and the app installs as an offline PWA. 66 unit tests plus Playwright end-to-end tests.",
+      "Found and fixed an unbounded rejection-sampling loop in scramble generation that was silently hanging CI up to the 6-hour job limit.",
     ],
     metric: { text: "~20.6", before: "~", to: 20.6, decimals: 1, label: "average moves, 1,500+ cubes" },
     stack: ["TypeScript", "Three.js", "Web Workers", "Vitest", "Playwright", "PWA"],
@@ -184,14 +180,12 @@ export const projects: Project[] = [
   {
     id: "choke",
     name: "Autonomous Choke Controller",
-    tagline: "Constrained MPC for a production choke on a flowing oil well, which says when a target is unsafe",
-    tags: ["Control", "Algorithms"],
+    tagline: "Constrained MPC for a production choke on a flowing oil well",
+    size: "sm",
     points: [
-      "A model predictive controller picks the choke position every hour to reach a requested oil rate within wellhead, flowline and bottom-hole pressure limits. When a rate is not safely reachable, it names the limit in the way and produces the most it can.",
-      "Zero constraint violations across 30 nominal runs, and +5.6% oil over a cautious operator at the same zero violations; a conventional PI controller violates on 69% of intervals. Under randomised model error in the hardest scenario, 7 of 150 runs brushed a limit, the worst by 1.16 psi on 2,850.",
-      "Written for Honeywell Campus Connect (hackathon round 2), with an executed notebook and an interactive simulator.",
+      "A model predictive controller that adjusts a production choke on a naturally flowing well while respecting operating constraints.",
+      "Built for the Honeywell Campus Connect hackathon round, with an interactive simulator deployed on Streamlit Cloud.",
     ],
-    metric: { text: "+5.6%", before: "+", to: 5.6, decimals: 1, after: "%", label: "oil vs a cautious operator, 0 violations" },
     stack: ["Python", "Model predictive control", "Streamlit"],
     links: [
       { label: "Live demo", href: "https://autonomous-choke-controller-v1.streamlit.app" },
@@ -248,3 +242,12 @@ export const music = {
   url: "https://www.youtube.com/playlist?list=PLT18kL3REqq6xjF97Ib2gZGZao-T1128d",
 };
 
+// tmux-style windows in the top bar; the index is the keyboard shortcut
+export const sections = [
+  { id: "about", label: "about" },
+  { id: "work", label: "work" },
+  { id: "projects", label: "projects" },
+  { id: "skills", label: "skills" },
+  { id: "interests", label: "interests" },
+  { id: "contact", label: "contact" },
+];

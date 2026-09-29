@@ -1,48 +1,32 @@
 import { cn } from "@/lib/utils";
-import { BlurFade } from "./ui/blur-fade";
 
-/** The italic serif accent. At most one phrase per headline. */
-export function Em({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <em className={cn("font-serif text-[1.08em] font-normal italic tracking-normal", className)}>{children}</em>;
-}
-
-/** A numbered section: label in the left column on wide screens, content on the right. */
+// Every section opens with the shell command that would "print" it.
 export function Section({
   id,
-  n,
-  label,
+  command,
   title,
-  lede,
   children,
   className,
 }: {
   id: string;
-  n: string;
-  label: string;
-  title: React.ReactNode;
-  lede?: React.ReactNode;
+  command: string;
+  title: string;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className={cn("border-t border-rule", className)}>
-      <div className="mx-auto grid max-w-[1120px] gap-x-12 px-4 py-16 sm:px-8 sm:py-24 lg:grid-cols-[180px_minmax(0,1fr)]">
-        <p className="mb-4 font-mono text-[12px] uppercase tracking-[.14em] text-muted lg:sticky lg:top-24 lg:self-start">
-          <span className="text-ink">§{n}</span> {label}
-        </p>
-        <div className="min-w-0">
-          <BlurFade>
-            <h2
-              id={`${id}-title`}
-              className="max-w-[24ch] text-balance text-[30px] font-semibold leading-[1.12] tracking-[-0.02em] text-ink sm:text-[42px]"
-            >
-              {title}
-            </h2>
-            {lede && <p className="mt-5 max-w-[64ch] text-[16px] leading-[1.65] text-body">{lede}</p>}
-          </BlurFade>
-          {children}
-        </div>
-      </div>
+    <section id={id} aria-labelledby={`${id}-title`} className={cn("relative py-20 sm:py-28", className)}>
+      <p className="font-mono text-[0.75rem] text-muted">
+        <span className="text-phosphor-dim">$</span> {command}
+      </p>
+      <h2
+        id={`${id}-title`}
+        className="mt-3 font-mono text-2xl font-medium tracking-tight text-ink sm:text-3xl"
+        style={{ fontStretch: "112.5%" }}
+      >
+        {title}
+      </h2>
+      <div className="mt-10">{children}</div>
     </section>
   );
 }

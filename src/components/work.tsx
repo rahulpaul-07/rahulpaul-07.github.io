@@ -1,48 +1,50 @@
-import { ArrowUpRight } from "lucide-react";
-
 import { experience, writing } from "@/data/portfolio";
+import { Section } from "./section";
 import { SamsungPipeline } from "./samsung-pipeline";
-import { Em, Section } from "./section";
 
 export function Work() {
   return (
-    <Section
-      id="work"
-      n="01"
-      label="Experience"
-      title={<>From a research model <Em>to a phone.</Em></>}
-    >
-      {experience.map((job) => (
-        <article key={job.org} className="mt-10">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-            <h3 className="text-[20px] font-semibold text-ink">
-              {job.role} <span className="font-normal text-body">· {job.org}</span>
-            </h3>
-            <p className="font-mono text-[12.5px] text-muted">{job.period}</p>
-          </div>
-          <ul className="mt-5 max-w-[70ch] space-y-3 text-[15.5px] leading-[1.65] text-body">
-            {job.points.map((point) => (
-              <li key={point} className="flex gap-3">
-                <span className="mt-[11px] h-px w-3 shrink-0 bg-muted" aria-hidden />
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-          <SamsungPipeline />
-        </article>
-      ))}
+    <Section id="work" command="tail experience.log" title="Work">
+      <ol className="max-w-4xl">
+        {experience.map((job) => (
+          <li key={job.org} className="border-l border-phosphor-dim pl-6 sm:pl-8">
+            <p className="font-mono text-[0.75rem] text-phosphor">[{job.period}]</p>
+            <h3 className="mt-2 text-xl font-medium text-ink">{job.role}</h3>
+            <p className="text-muted">{job.org}</p>
+            <ul className="mt-6 space-y-4">
+              {job.points.map((pt) => (
+                <li key={pt.slice(0, 20)} className="flex max-w-[70ch] gap-3">
+                  <span aria-hidden="true" className="mt-[0.3rem] font-mono text-[0.75rem] text-phosphor-dim">
+                    &gt;
+                  </span>
+                  <span>{pt}</span>
+                </li>
+              ))}
+            </ul>
+            <SamsungPipeline />
+          </li>
+        ))}
+      </ol>
 
-      <h3 id="writing" className="mt-16 scroll-mt-24 font-mono text-[12px] uppercase tracking-[.14em] text-muted">Writing</h3>
-      {writing.map((w) => (
-        <a key={w.url} href={w.url} target="_blank" rel="noopener noreferrer"
-           className="group mt-4 block border border-rule p-5 transition-colors hover:border-ink">
-          <p className="font-mono text-[12px] text-muted">{w.venue}</p>
-          <p className="mt-1 text-[18px] font-semibold text-ink group-hover:underline group-hover:decoration-rule">
-            {w.title} <ArrowUpRight className="inline h-4 w-4" aria-hidden />
-          </p>
-          <p className="mt-2 max-w-[70ch] text-[15px] leading-[1.6] text-body">{w.desc}</p>
-        </a>
-      ))}
+      <div className="mt-20 max-w-4xl">
+        <p className="font-mono text-[0.75rem] text-muted">
+          <span className="text-phosphor-dim">$</span> ls publications/
+        </p>
+        {writing.map((w) => (
+          <a
+            key={w.title}
+            href={w.url}
+            target="_blank"
+            rel="noreferrer"
+            className="group mt-4 block rounded-xl border border-line bg-panel/60 p-6 transition-colors hover:border-phosphor-dim"
+          >
+            <p className="font-mono text-[0.75rem] text-amber">{w.venue}</p>
+            <h3 className="mt-2 text-lg font-medium text-ink group-hover:text-phosphor">{w.title}</h3>
+            <p className="mt-2 max-w-[65ch] text-muted">{w.desc}</p>
+            <p className="mt-4 font-mono text-[0.75rem] text-phosphor underline underline-offset-4">Read on Springer</p>
+          </a>
+        ))}
+      </div>
     </Section>
   );
 }
